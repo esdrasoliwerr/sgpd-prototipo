@@ -194,10 +194,11 @@ th {
   <strong>SGPD</strong>
 </div>
 
-<a href="#">🏠 Dashboard</a>
-<a href="#">➕ Novo Pedido</a>
-<a href="#">📋 Pedidos</a>
-<a href="#">📦 Estoque</a>
+<!-- LINKS CORRIGIDOS -->
+<a href="dashboard.html">🏠 Dashboard</a>
+<a href="novo_pedido.html">➕ Novo Pedido</a>
+<a href="lista_de_pedidos.html">📋 Pedidos</a>
+<a href="detalhe_do_pedido.html">📦 Detalhe</a>
 <a href="#" class="lock">🔒 Relatórios</a>
 
 </div>
@@ -211,7 +212,7 @@ th {
 
   <div class="profile">
     <div class="avatar"></div>
-    <span>Esdras</span>
+    <span id="nomeUsuario">Esdras</span>
   </div>
 </div>
 
@@ -238,7 +239,11 @@ th {
 
 <div style="display:flex; justify-content: space-between; margin-bottom: 10px;">
   <h3>Pedidos recentes</h3>
-  <button class="btn">+ Novo Pedido</button>
+
+  <!-- BOTÃO FUNCIONANDO -->
+  <button class="btn" onclick="window.location.href='novo_pedido.html'">
+    + Novo Pedido
+  </button>
 </div>
 
 <table>
@@ -260,7 +265,7 @@ th {
 <td>Montagem PC Gamer</td>
 <td>12/03</td>
 <td><span class="status andamento">Em andamento</span></td>
-<td class="action">🔍</td>
+<td class="action" onclick="window.location.href='detalhe_do_pedido.html'">🔍</td>
 </tr>
 
 <tr>
@@ -269,7 +274,7 @@ th {
 <td>Teclado Mecânico</td>
 <td>11/03</td>
 <td><span class="status concluido">Concluído</span></td>
-<td class="action">🔍</td>
+<td class="action" onclick="window.location.href='detalhe_do_pedido.html'">🔍</td>
 </tr>
 
 <tr>
@@ -278,7 +283,7 @@ th {
 <td>Placa de vídeo RTX</td>
 <td>10/03</td>
 <td><span class="status estoque">Aguardando estoque</span></td>
-<td class="action">🔍</td>
+<td class="action" onclick="window.location.href='detalhe_do_pedido.html'">🔍</td>
 </tr>
 
 </tbody>
@@ -288,6 +293,14 @@ th {
 
 </div>
 </div>
+
+<script>
+// MOSTRAR "Convidado" SE VEIO DO LOGIN
+let nome = localStorage.getItem("usuario");
+if (nome) {
+  document.getElementById("nomeUsuario").innerText = nome;
+}
+</script>
 
 </body>
 </html>
