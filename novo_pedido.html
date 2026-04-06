@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>SGPD - Novo Pedido</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f1f5f9;
+}
+
+/* LAYOUT BASE */
+.layout {
+  display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 220px;
+  background: #1e293b;
+  color: white;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.logo {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.logo-box {
+  width: 35px;
+  height: 35px;
+  background: linear-gradient(135deg,#2563EB,#3B82F6);
+  border-radius: 6px;
+}
+
+.sidebar a {
+  display: flex;
+  gap: 10px;
+  text-decoration: none;
+  color: #cbd5f5;
+  margin: 15px 0;
+}
+
+.sidebar a:hover {
+  color: white;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* TOPBAR */
+.topbar {
+  height: 60px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  background: #2563eb;
+  border-radius: 50%;
+}
+
+/* CONTENT AREA */
+.content-area {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* LEFT */
+.content {
+  flex: 2;
+}
+
+/* RIGHT */
+.summary {
+  width: 320px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  height: fit-content;
+}
+
+/* CARD */
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* INPUT */
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+/* BUTTON */
+.btn {
+  background: linear-gradient(135deg,#2563eb,#3b82f6);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ITEM */
+.item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+/* REMOVE */
+.remove {
+  cursor: pointer;
+  color: red;
+}
+
+/* LGPD */
+.lgpd {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="logo">
+    <div class="logo-box"></div>
+    <strong>SGPD</strong>
+  </div>
+
+  <a href="#">🏠 Dashboard</a>
+  <a href="#">➕ Novo Pedido</a>
+  <a href="#">📋 Pedidos</a>
+  <a href="#">📦 Estoque</a>
+  <a href="#">🔒 Relatórios</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <strong>Novo Pedido</strong>
+
+  <div style="display:flex; gap:10px; align-items:center;">
+    <div class="avatar"></div>
+    Esdras
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content-area">
+
+<!-- ESQUERDA -->
+<div class="content">
+
+<div class="card">
+<h3>Cliente</h3>
+<input placeholder="Buscar cliente...">
+<button class="btn">+ Novo Cliente</button>
+</div>
+
+<div class="card">
+<h3>Adicionar Item</h3>
+<input id="itemNome" placeholder="Produto ou serviço">
+<input id="itemValor" placeholder="Valor">
+<button class="btn" onclick="addItem()">Adicionar</button>
+</div>
+
+<div class="card">
+<h3>Pagamento</h3>
+
+<select>
+<option>Pix</option>
+<option>Crédito</option>
+<option>Débito</option>
+<option>Dinheiro</option>
+</select>
+
+<select>
+<option>1x</option>
+<option>2x</option>
+<option>3x</option>
+<option>4x</option>
+<option>5x</option>
+<option>6x</option>
+</select>
+
+<select onchange="toggleCPF(this.value)">
+<option>Nota fiscal: Não</option>
+<option>Nota fiscal: Sim</option>
+</select>
+
+<input id="cpf" placeholder="CPF/CNPJ" style="display:none;">
+</div>
+
+<button class="btn">Finalizar Pedido</button>
+
+<div class="lgpd">
+Seus dados estão protegidos conforme a LGPD.
+</div>
+
+</div>
+
+<!-- DIREITA -->
+<div class="summary">
+
+<h3>Resumo</h3>
+
+<div id="lista"></div>
+
+<div id="total" style="margin-top:10px; font-weight:bold;">
+Total: R$ 0
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+let total = 0;
+
+function addItem() {
+  let nome = document.getElementById("itemNome").value;
+  let valor = parseFloat(document.getElementById("itemValor").value);
+
+  if (!nome || !valor) return;
+
+  total += valor;
+
+  let div = document.createElement("div");
+  div.className = "item";
+
+  div.innerHTML = `
+    ${nome} - R$ ${valor}
+    <span class="remove" onclick="removeItem(this, ${valor})">❌</span>
+  `;
+
+  document.getElementById("lista").appendChild(div);
+  document.getElementById("total").innerText = "Total: R$ " + total;
+}
+
+function removeItem(el, valor) {
+  total -= valor;
+  el.parentElement.remove();
+  document.getElementById("total").innerText = "Total: R$ " + total;
+}
+
+function toggleCPF(valor) {
+  let cpf = document.getElementById("cpf");
+  cpf.style.display = valor.includes("Sim") ? "block" : "none";
+}
+</script>
+
+</body>
+</html>

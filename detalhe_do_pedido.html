@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>SGPD - Detalhe do Pedido</title>
+
+<style>
+body {
+  margin:0;
+  font-family:'Segoe UI';
+  background:#f1f5f9;
+}
+
+.layout { display:flex; }
+
+/* SIDEBAR */
+.sidebar {
+  width:220px;
+  background:#1e293b;
+  color:white;
+  min-height:100vh;
+  padding:20px;
+}
+
+.logo { display:flex; gap:10px; margin-bottom:30px; }
+.logo-box {
+  width:35px; height:35px;
+  background:linear-gradient(135deg,#2563EB,#3B82F6);
+  border-radius:6px;
+}
+
+.sidebar a {
+  display:flex;
+  gap:10px;
+  color:#cbd5f5;
+  text-decoration:none;
+  margin:15px 0;
+}
+
+/* MAIN */
+.main { flex:1; display:flex; flex-direction:column; }
+
+/* TOPBAR */
+.topbar {
+  height:60px;
+  background:white;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 20px;
+  border-bottom:1px solid #eee;
+}
+
+.avatar {
+  width:35px; height:35px;
+  background:#2563eb;
+  border-radius:50%;
+}
+
+/* CONTENT */
+.content {
+  padding:20px;
+  display:grid;
+  grid-template-columns: 2fr 1fr;
+  gap:20px;
+}
+
+/* CARD */
+.card {
+  background:white;
+  padding:20px;
+  border-radius:10px;
+}
+
+h3 { margin-top:0; }
+
+.item {
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:5px;
+}
+
+/* STATUS */
+.status {
+  padding:5px 10px;
+  border-radius:20px;
+  color:white;
+  background:#f59e0b;
+}
+
+/* BUTTON */
+.btn {
+  margin-top:10px;
+  padding:10px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  background:#2563eb;
+  color:white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+<div class="sidebar">
+  <div class="logo">
+    <div class="logo-box"></div>
+    <strong>SGPD</strong>
+  </div>
+
+  <a href="#">🏠 Dashboard</a>
+  <a href="#">➕ Novo Pedido</a>
+  <a href="#">📋 Pedidos</a>
+  <a href="#">📦 Estoque</a>
+</div>
+
+<div class="main">
+
+<div class="topbar">
+  <strong>Detalhe do Pedido #001</strong>
+
+  <div style="display:flex; gap:10px; align-items:center;">
+    <div class="avatar"></div>
+    Esdras
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ESQUERDA -->
+<div>
+
+<div class="card">
+<h3>Informações</h3>
+<p><strong>Cliente:</strong> João Silva</p>
+<p><strong>Data:</strong> 06/04/2026</p>
+<p><strong>Status:</strong> <span class="status">Em andamento</span></p>
+
+<select>
+<option>Em andamento</option>
+<option>Aguardando peça</option>
+<option>Concluído</option>
+<option>Cancelado</option>
+</select>
+
+<button class="btn">Atualizar Status</button>
+</div>
+
+<div class="card">
+<h3>Itens</h3>
+
+<div class="item">
+<span>Formatação</span>
+<span>R$ 150</span>
+</div>
+
+<div class="item">
+<span>SSD 480GB</span>
+<span>R$ 300</span>
+</div>
+
+</div>
+
+<div class="card">
+<h3>Serviço</h3>
+<p>Formatação completa e instalação de drivers</p>
+<p><strong>Técnico:</strong> Carlos</p>
+<p><strong>Prazo:</strong> 2 dias</p>
+</div>
+
+<div class="card">
+<h3>Observações</h3>
+<p>Cliente relatou lentidão no sistema.</p>
+</div>
+
+</div>
+
+<!-- DIREITA -->
+<div>
+
+<div class="card">
+<h3>Pagamento</h3>
+<p>Forma: Crédito</p>
+<p>Parcelas: 3x</p>
+<p><strong>Total: R$ 450</strong></p>
+</div>
+
+<div class="card">
+<h3>Fiscal</h3>
+<p>Nota fiscal: Sim</p>
+<p>CPF/CNPJ: 123.456.789-00</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
