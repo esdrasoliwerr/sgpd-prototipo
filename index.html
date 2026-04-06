@@ -91,6 +91,12 @@ button:hover {
   font-size: 13px;
   color: #6B7280;
 }
+
+.error {
+  color: red;
+  font-size: 12px;
+  display: none;
+}
 </style>
 
 </head>
@@ -107,16 +113,33 @@ button:hover {
 <div class="card">
 <h2>Entrar</h2>
 
-<input type="text" placeholder="E-mail ou Usuário">
-<input type="password" placeholder="Senha">
+<input id="user" type="text" placeholder="E-mail ou Usuário">
+<input id="pass" type="password" placeholder="Senha">
 
-<button>Entrar</button>
+<div id="erro" class="error">Preencha os campos</div>
+
+<button onclick="login()">Entrar</button>
 
 <div class="link">Esqueceu sua senha?</div>
 
 </div>
 
 </div>
+
+<script>
+function login() {
+  let user = document.getElementById("user").value;
+  let pass = document.getElementById("pass").value;
+
+  if (user === "" || pass === "") {
+    document.getElementById("erro").style.display = "block";
+    return;
+  }
+
+  // simulação de login
+  window.location.href = "dashboard.html";
+}
+</script>
 
 </body>
 </html>
