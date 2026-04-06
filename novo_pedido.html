@@ -11,10 +11,7 @@ body {
   background: #f1f5f9;
 }
 
-/* LAYOUT BASE */
-.layout {
-  display: flex;
-}
+.layout { display: flex; }
 
 /* SIDEBAR */
 .sidebar {
@@ -46,9 +43,7 @@ body {
   margin: 15px 0;
 }
 
-.sidebar a:hover {
-  color: white;
-}
+.sidebar a:hover { color: white; }
 
 /* MAIN */
 .main {
@@ -75,25 +70,20 @@ body {
   border-radius: 50%;
 }
 
-/* CONTENT AREA */
+/* CONTENT */
 .content-area {
   display: flex;
   padding: 20px;
   gap: 20px;
 }
 
-/* LEFT */
-.content {
-  flex: 2;
-}
+.content { flex: 2; }
 
-/* RIGHT */
 .summary {
   width: 320px;
   background: white;
   padding: 20px;
   border-radius: 10px;
-  height: fit-content;
 }
 
 /* CARD */
@@ -131,13 +121,11 @@ input, select {
   padding: 8px 0;
 }
 
-/* REMOVE */
 .remove {
   cursor: pointer;
   color: red;
 }
 
-/* LGPD */
 .lgpd {
   font-size: 12px;
   color: #6b7280;
@@ -157,11 +145,12 @@ input, select {
     <strong>SGPD</strong>
   </div>
 
-  <a href="#">🏠 Dashboard</a>
-  <a href="#">➕ Novo Pedido</a>
-  <a href="#">📋 Pedidos</a>
+  <!-- LINKS CORRIGIDOS -->
+  <a href="dashboard.html">🏠 Dashboard</a>
+  <a href="novo_pedido.html">➕ Novo Pedido</a>
+  <a href="lista_de_pedidos.html">📋 Pedidos</a>
   <a href="#">📦 Estoque</a>
-  <a href="#">🔒 Relatórios</a>
+  <a href="#" class="lock">🔒 Relatórios</a>
 </div>
 
 <!-- MAIN -->
@@ -173,7 +162,7 @@ input, select {
 
   <div style="display:flex; gap:10px; align-items:center;">
     <div class="avatar"></div>
-    Esdras
+    <span id="nomeUsuario">Esdras</span>
   </div>
 </div>
 
@@ -223,7 +212,10 @@ input, select {
 <input id="cpf" placeholder="CPF/CNPJ" style="display:none;">
 </div>
 
-<button class="btn">Finalizar Pedido</button>
+<!-- BOTÃO AGORA FUNCIONA -->
+<button class="btn" onclick="finalizarPedido()">
+Finalizar Pedido
+</button>
 
 <div class="lgpd">
 Seus dados estão protegidos conforme a LGPD.
@@ -282,6 +274,22 @@ function removeItem(el, valor) {
 function toggleCPF(valor) {
   let cpf = document.getElementById("cpf");
   cpf.style.display = valor.includes("Sim") ? "block" : "none";
+}
+
+function finalizarPedido() {
+  if (total === 0) {
+    alert("Adicione pelo menos um item");
+    return;
+  }
+
+  alert("Pedido criado com sucesso!");
+  window.location.href = "lista_de_pedidos.html";
+}
+
+// nome dinâmico
+let nome = localStorage.getItem("usuario");
+if (nome) {
+  document.getElementById("nomeUsuario").innerText = nome;
 }
 </script>
 
