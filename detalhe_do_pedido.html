@@ -37,6 +37,8 @@ body {
   margin:15px 0;
 }
 
+.sidebar a:hover { color:white; }
+
 /* MAIN */
 .main { flex:1; display:flex; flex-direction:column; }
 
@@ -65,14 +67,11 @@ body {
   gap:20px;
 }
 
-/* CARD */
 .card {
   background:white;
   padding:20px;
   border-radius:10px;
 }
-
-h3 { margin-top:0; }
 
 .item {
   display:flex;
@@ -85,8 +84,13 @@ h3 { margin-top:0; }
   padding:5px 10px;
   border-radius:20px;
   color:white;
-  background:#f59e0b;
+  font-size:12px;
 }
+
+.andamento { background:#f59e0b; }
+.aguardando { background:#3b82f6; }
+.concluido { background:#10b981; }
+.cancelado { background:#ef4444; }
 
 /* BUTTON */
 .btn {
@@ -105,15 +109,16 @@ h3 { margin-top:0; }
 
 <div class="layout">
 
+<!-- SIDEBAR -->
 <div class="sidebar">
   <div class="logo">
     <div class="logo-box"></div>
     <strong>SGPD</strong>
   </div>
 
-  <a href="#">🏠 Dashboard</a>
-  <a href="#">➕ Novo Pedido</a>
-  <a href="#">📋 Pedidos</a>
+  <a href="dashboard.html">🏠 Dashboard</a>
+  <a href="novo_pedido.html">➕ Novo Pedido</a>
+  <a href="lista_de_pedidos.html">📋 Pedidos</a>
   <a href="#">📦 Estoque</a>
 </div>
 
@@ -124,7 +129,7 @@ h3 { margin-top:0; }
 
   <div style="display:flex; gap:10px; align-items:center;">
     <div class="avatar"></div>
-    Esdras
+    <span id="nomeUsuario">Usuário</span>
   </div>
 </div>
 
@@ -135,18 +140,26 @@ h3 { margin-top:0; }
 
 <div class="card">
 <h3>Informações</h3>
+
 <p><strong>Cliente:</strong> João Silva</p>
 <p><strong>Data:</strong> 06/04/2026</p>
-<p><strong>Status:</strong> <span class="status">Em andamento</span></p>
 
-<select>
-<option>Em andamento</option>
-<option>Aguardando peça</option>
-<option>Concluído</option>
-<option>Cancelado</option>
+<p><strong>Status:</strong>
+<span id="statusBadge" class="status andamento">Em andamento</span>
+</p>
+
+<select id="statusSelect">
+<option value="andamento">Em andamento</option>
+<option value="aguardando">Aguardando peça</option>
+<option value="concluido">Concluído</option>
+<option value="cancelado">Cancelado</option>
 </select>
 
-<button class="btn">Atualizar Status</button>
+<button class="btn" onclick="atualizarStatus()">Atualizar Status</button>
+
+<br>
+<button class="btn" onclick="voltar()">⬅ Voltar</button>
+
 </div>
 
 <div class="card">
@@ -201,6 +214,36 @@ h3 { margin-top:0; }
 </div>
 
 </div>
+
+<script>
+// nome dinâmico
+let nome = localStorage.getItem("usuario");
+if (nome) {
+  document.getElementById("nomeUsuario").innerText = nome;
+}
+
+// atualizar status visualmente
+function atualizarStatus() {
+  let valor = document.getElementById("statusSelect").value;
+  let badge = document.getElementById("statusBadge");
+
+  badge.className = "status " + valor;
+
+  let texto = {
+    andamento: "Em andamento",
+    aguardando: "Aguardando peça",
+    concluido: "Concluído",
+    cancelado: "Cancelado"
+  };
+
+  badge.innerText = texto[valor];
+}
+
+// voltar
+function voltar() {
+  window.location.href = "lista_de_pedidos.html";
+}
+</script>
 
 </body>
 </html>
