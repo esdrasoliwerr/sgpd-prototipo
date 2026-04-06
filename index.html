@@ -86,6 +86,17 @@ button:hover {
   opacity: 0.9;
 }
 
+.btn-guest {
+  background: transparent;
+  color: #2563EB;
+  border: 1px solid #2563EB;
+}
+
+.btn-guest:hover {
+  background: #2563EB;
+  color: white;
+}
+
 .link {
   margin-top: 15px;
   font-size: 13px;
@@ -118,7 +129,13 @@ button:hover {
 
 <div id="erro" class="error">Preencha os campos</div>
 
+<!-- BOTÃO LOGIN -->
 <button onclick="login()">Entrar</button>
+
+<!-- BOTÃO CONVIDADO -->
+<button class="btn-guest" onclick="entrarConvidado()">
+⚡ Entrar como convidado
+</button>
 
 <div class="link">Esqueceu sua senha?</div>
 
@@ -136,7 +153,12 @@ function login() {
     return;
   }
 
-  // simulação de login
+  window.location.href = "dashboard.html";
+}
+
+function entrarConvidado() {
+  // opcional: marcar como convidado
+  localStorage.setItem("usuario", "Convidado");
   window.location.href = "dashboard.html";
 }
 </script>
