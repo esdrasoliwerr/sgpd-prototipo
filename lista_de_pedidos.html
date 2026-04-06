@@ -156,11 +156,12 @@ tr:not(:last-child) {
     <strong>SGPD</strong>
   </div>
 
-  <a href="#">🏠 Dashboard</a>
-  <a href="#">➕ Novo Pedido</a>
-  <a href="#">📋 Pedidos</a>
+  <!-- LINKS CORRIGIDOS -->
+  <a href="dashboard.html">🏠 Dashboard</a>
+  <a href="novo_pedido.html">➕ Novo Pedido</a>
+  <a href="lista_de_pedidos.html">📋 Pedidos</a>
   <a href="#">📦 Estoque</a>
-  <a href="#">🔒 Relatórios</a>
+  <a href="#" class="lock">🔒 Relatórios</a>
 </div>
 
 <!-- MAIN -->
@@ -172,7 +173,7 @@ tr:not(:last-child) {
 
   <div style="display:flex; gap:10px; align-items:center;">
     <div class="avatar"></div>
-    Esdras
+    <span id="nomeUsuario">Esdras</span>
   </div>
 </div>
 
@@ -181,7 +182,11 @@ tr:not(:last-child) {
 
 <div class="header">
   <h2>Lista de Pedidos</h2>
-  <button class="btn">+ Novo Pedido</button>
+
+  <!-- BOTÃO FUNCIONANDO -->
+  <button class="btn" onclick="window.location.href='novo_pedido.html'">
+    + Novo Pedido
+  </button>
 </div>
 
 <div class="filters">
@@ -218,7 +223,11 @@ tr:not(:last-child) {
 <td>06/04</td>
 <td><span class="status andamento">Em andamento</span></td>
 <td>R$ 150</td>
-<td class="actions">👁 ✏️ ✔️</td>
+<td class="actions">
+  <span onclick="window.location.href='detalhe_do_pedido.html'">👁</span>
+  <span>✏️</span>
+  <span>✔️</span>
+</td>
 </tr>
 
 <tr>
@@ -228,7 +237,11 @@ tr:not(:last-child) {
 <td>05/04</td>
 <td><span class="status aguardando">Aguardando peça</span></td>
 <td>R$ 2800</td>
-<td class="actions">👁 ✏️ ✔️</td>
+<td class="actions">
+  <span onclick="window.location.href='detalhe_do_pedido.html'">👁</span>
+  <span>✏️</span>
+  <span>✔️</span>
+</td>
 </tr>
 
 <tr>
@@ -238,7 +251,11 @@ tr:not(:last-child) {
 <td>04/04</td>
 <td><span class="status concluido">Concluído</span></td>
 <td>R$ 200</td>
-<td class="actions">👁 ✏️ ✔️</td>
+<td class="actions">
+  <span onclick="window.location.href='detalhe_do_pedido.html'">👁</span>
+  <span>✏️</span>
+  <span>✔️</span>
+</td>
 </tr>
 
 <tr>
@@ -248,7 +265,11 @@ tr:not(:last-child) {
 <td>03/04</td>
 <td><span class="status cancelado">Cancelado</span></td>
 <td>R$ 500</td>
-<td class="actions">👁 ✏️ ✔️</td>
+<td class="actions">
+  <span onclick="window.location.href='detalhe_do_pedido.html'">👁</span>
+  <span>✏️</span>
+  <span>✔️</span>
+</td>
 </tr>
 
 </tbody>
@@ -258,6 +279,14 @@ tr:not(:last-child) {
 
 </div>
 </div>
+
+<script>
+// MOSTRAR "Convidado"
+let nome = localStorage.getItem("usuario");
+if (nome) {
+  document.getElementById("nomeUsuario").innerText = nome;
+}
+</script>
 
 </body>
 </html>
